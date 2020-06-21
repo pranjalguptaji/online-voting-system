@@ -1,0 +1,69 @@
+
+
+<article [class.content]="!deviceXs" [class.content-mob]="deviceXs" (scroll)="onScroll($event)">
+
+  <header class="text-gray-700 body-font mb-12">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <mat-icon>verified_user</mat-icon>
+        <span class="ml-3 text-4xl">Welcome {{cur_user.Name}}</span>
+      </a>
+      <span class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 ml-24 text-xl">Sort by: </span>
+      <nav class="md:ml-8 md:mr-24 flex flex-wrap items-center text-base justify-center">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-5">
+          <a class="hover:text-gray-900" (click)="sortByKey('Post_ID')">Time</a>
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-5">
+          <a class="hover:text-gray-900" (click)="sortByKey('Title')">Title</a>
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full mr-5">
+          <a class="hover:text-gray-900" (click)="sortByKey('Category')">Category</a>
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-5 xs:mt- md:mt-0">
+          <a class="hover:text-gray-900" (click)="sortByKey('Author')">Author</a>
+        </button>
+      </nav>
+
+        <form class="w-full max-w-sm mt-12">
+          <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
+            <input [(ngModel)]="search_string" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name="search_key" placeholder="Search by Title/Category/Author" aria-label="Full name">
+            <button class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="button" (click)="searchBy()">
+              Search
+            </button>
+          </div>
+        </form>
+
+    </div>
+  </header>
+
+  <mat-drawer-container class="example-container mt-20">
+    <mat-drawer-content>
+      <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+        <div class="example-card" *ngFor="let post of posts">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+              <mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="mr-5 font-bold">{{post["Title"]}}</div>
+                <div class="ml-16 font-hairline font-sm">By {{post["Author"]}}</div>
+              </mat-card-title>
+              <mat-card-subtitle class="font-medium font-serif text-sm">{{post["Category"]}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{post["Statement"]}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button (click)="votePressed(post['Post_ID'],'UP')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 mr-2 border border-blue-500 hover:border-transparent rounded" [ngClass]="{'border-b-4 border-blue-700':map['up'].includes(post['Post_ID'])}">
+                <mat-icon>thumb_up</mat-icon>
+              </button>
+              <button (click)="votePressed(post['Post_ID'],'DOWN')" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 ml-2 border border-blue-500 hover:border-transparent rounded" [ngClass]="{'border-b-4 border-blue-700':map['down'].includes(post['Post_ID'])}">
+                <mat-icon>thumb_down</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+          <div class="m-8"></div>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</article>
