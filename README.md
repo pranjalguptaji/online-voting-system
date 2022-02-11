@@ -1,6 +1,6 @@
-# OnlineBlogVotingSystem
+# OnlineVotingSystem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+It is a web application where users will be able to vote on posts (on multiple topics), created by the admin with a feature where admin will be able see the up-votes and down-votes on each topic, and can also view which user has up-voted and down-voted a particular post.
 
 ## Development server
 
