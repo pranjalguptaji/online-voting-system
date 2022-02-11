@@ -4,9 +4,9 @@ It is a web application where users will be able to vote on posts (on multiple t
 
 ## Tech Stack Used:
 
-Frontend: Angular.js, HTML5, Bootstrap, CSS
-Backend: Node.js, Express
-Database: MySQL
+Frontend: Angular.js, HTML5, Bootstrap, CSS <br>
+Backend: Node.js, Express <br>
+Database: MySQL <br>
 
 ## Development server
 
